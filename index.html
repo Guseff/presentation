@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<script src="https://threejs.org/build/three.js"></script>
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<section>
+					<img src="./assets/images/webgl-logo.png" alt="">
+					<!-- <h2>What is WebGL?</h2> -->
+				</section>
+				<section>
+					<p>WebGL (Web Graphics Library) is a JavaScript API for rendering interactive 2D and 3D graphics within any
+						compatible web browser without the use of plug-ins.</p>
+					<p>WebGL is designed and maintained by the non-profit Khronos Group.</p>
+				</section>
+				<section>
+					<p>
+						<ul>
+							<li>fully integrated with other web standards</li>
+							<li>uses GPU for best performance</li>
+							<li>WebGL elements can be mixed with other HTML elements</li>
+						</ul>
+					</p>
+				</section>
+				<section>
+					<p>Two parts:
+						<ul>
+							<li>control code written in JavaScript</li>
+							<li>shader code that is written in ESSL</li>
+						</ul>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<p>How it works?</p>
+				</section>
+				<section>
+					<p><img src="./assets/images/WebGL_1.png" alt=""></p>
+				</section>
+				<section>
+					<p><img src="./assets/images/WebGL_2.png" alt=""></p>
+				</section>
+				<section>
+					<p><img src="./assets/images/WebGL_3.png" alt=""></p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<p>Problems: 
+						<ul>
+							<li>low-level nature of the WebGL API</li>
+							<li>two languages to learn and use</li>
+						</ul> 
+					</p>
+				</section>
+				<section>
+					<p>Solution:</p>
+					<p class="fragment fade-up">Use one of the high-level libraries</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<img src="./assets/images/Three.js_logo.png" alt="">
+				</section>
+				<section>
+					<p>Three.js is a cross-browser JavaScript library and Application Programming Interface (API)
+						used to create and display animated 3D computer graphics in a web browser.</p>
+				</section>
+				<section>
+					<p>
+						<ul>
+							<li>allows the creation of GPU-accelerated 3D animations using JS language</li>
+							<li>works without relying on proprietary browser plugins</li>
+						</ul>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<p>Three.js includes the following features:</p>
+					<ul>
+						<li>Scenes.</li>
+						<li>Cameras.</li>
+						<li>Objects.</li>
+					</ul>
+				</section>
+				<section>
+					<ul>
+						<li>Geometry.</li>
+						<li>Animations.</li>
+						<li>Effects.</li>
+					</ul>
+				</section>
+				<section>
+					<ul>
+						<li>Lights.</li>
+						<li>Materials.</li>
+						<li>Data loaders.</li>
+					</ul>
+				</section>
+				<section>
+					<ul>
+						<li>Support.</li>
+						<li>Examples.</li>
+						<li>Debugging.</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Code Example</h3>
+					<p>First we have to include The Three.js library within a web page by linking to it's copy.</p>
+				</section>
+				<section>
+					<p>it can be a local copy:</p>
+					<pre>
+						<code class="javascript"><script src="js/three.min.js"></script></code>
+					</pre>
+					<p>or a remote one:</p>
+					<pre>
+						<code class="javascript"><script src="https://threejs.org/build/three.js"></script></code>
+					</pre>
+				</section>
+				<section>
+					<p>Then we can write a minimal working example</p>
+					<pre>
+						<code class="javascript">
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(25, 1, 0.1, 1000);
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize(300, 300);
+document.getElementById('canvas').appendChild(renderer.domElement);
+var texture = new THREE.TextureLoader().load('images/texture.gif');
+var geometry = new THREE.BoxGeometry();
+var material = new THREE.MeshBasicMaterial( { map: texture } );
+var cube = new THREE.Mesh(geometry, material);
+					</code></pre>
+				</section>
+				<section>
+					<pre>
+						<code class="javascript">
+scene.add(cube);
+camera.position.z = 5;
+var animate = function () {
+	requestAnimationFrame(animate);
+
+	cube.rotation.x += 0.01;
+	cube.rotation.y += 0.01;
+
+	renderer.render(scene, camera);
+};
+animate();
+					</code></pre>
+				</section>
+				<section id="canvas"></section>
+			</section>
+			<section>
+				<h4>Links:</h4>
+				<a href="https://www.khronos.org/webgl/">WebGL official site</a>
+				<br>
+				<a href="https://threejs.org/">TreeJS official site</a>
+				<p>Thank you for your attention</p>
+				<a mailto="vasily.guseff@gmail.com">vasily.guseff@gmail.com</a>
+			</section>
+		</div>
+	</div>
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [
+				{ src: 'plugin/markdown/marked.js' },
+				{ src: 'plugin/markdown/markdown.js' },
+				{ src: 'plugin/notes/notes.js', async: true },
+				{ src: 'plugin/highlight/highlight.js', async: true }
+			]
+		});
+	</script>
+	<script>
+		var scene = new THREE.Scene();
+		var camera = new THREE.PerspectiveCamera(25, 1, 0.1, 1000);
+
+		var renderer = new THREE.WebGLRenderer();
+		renderer.setSize(400, 400);
+		document.getElementById('canvas').appendChild(renderer.domElement);
+		var texture = new THREE.TextureLoader().load('assets/images/texture.gif');
+		var geometry = new THREE.BoxGeometry();
+		var material = new THREE.MeshBasicMaterial( { map: texture } );
+		var cube = new THREE.Mesh(geometry, material);
+		scene.add(cube);
+
+		camera.position.z = 5;
+
+		var animate = function () {
+			requestAnimationFrame(animate);
+
+			cube.rotation.x += 0.01;
+			cube.rotation.y += 0.01;
+
+			renderer.render(scene, camera);
+		};
+
+		animate();
+	</script>
+</body>
+
+</html>
